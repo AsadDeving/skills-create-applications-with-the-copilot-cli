@@ -8,11 +8,37 @@
  *   - Subtraction
  *   * Multiplication
  *   / Division
+ *   % Modulo
+ *   ^ Exponentiation
+ *   sqrt Square root
  *
  * Usage:
  *   node src/calculator.js <number> <operator> <number>
  *   node src/calculator.js 8 + 4
  */
+
+// Returns the remainder of a divided by b.
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('Cannot calculate modulo by zero.');
+  }
+
+  return a % b;
+}
+
+// Returns base raised to the exponent.
+function power(base, exponent) {
+  return base ** exponent;
+}
+
+// Returns the square root of n and rejects negative numbers.
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('Cannot calculate the square root of a negative number.');
+  }
+
+  return Math.sqrt(n);
+}
 
 const operations = {
   // Addition
@@ -29,6 +55,10 @@ const operations = {
 
     return left / right;
   },
+  // Modulo
+  '%': modulo,
+  // Exponentiation
+  '^': power,
 };
 
 function calculate(left, operator, right) {
@@ -73,4 +103,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { calculate };
+module.exports = { calculate, modulo, power, squareRoot };
